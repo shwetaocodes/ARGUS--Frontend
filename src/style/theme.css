@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg-void: #0a0d13;
+  --bg-panel: #12161f;
+  --bg-panel-raised: #181d29;
+  --border-subtle: #232937;
+  --border-strong: #333c4f;
+  --text-primary: #e8eaed;
+  --text-secondary: #8b93a7;
+  --text-tertiary: #5a6478;
+  --accent-amber: #ffb300;
+  --accent-amber-dim: #4d3a10;
+  --accent-cyan: #4fd1c5;
+  --threat-low: #4ade80;
+  --threat-medium: #ffb300;
+  --threat-high: #fb923c;
+  --threat-critical: #f87171;
+  --cat-infiltration: #f87171;
+  --cat-ied: #dc2626;
+  --cat-protest: #fbbf24;
+  --cat-troop: #a78bfa;
+  --cat-propaganda: #60a5fa;
+  --cat-ceasefire: #fb7185;
+  --cat-convoy: #34d399;
+  --cat-aerial: #22d3ee;
+  --cat-none: #5a6478;
+  --font-ui: 'IBM Plex Sans', -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --radius: 6px;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body { font-family: var(--font-ui); font-size: 14px; -webkit-font-smoothing: antialiased; }
+
+.ops-shell {
+  background: var(--bg-void);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+.ops-shell a { color: var(--accent-cyan); text-decoration: none; }
+.ops-shell a:hover { text-decoration: underline; }
+
+.ops-shell input, .ops-shell select, .ops-shell textarea {
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.ops-shell input:focus, .ops-shell select:focus, .ops-shell textarea:focus { border-color: var(--accent-amber); }
+.ops-shell input::placeholder { color: var(--text-tertiary); }
+
+.ops-shell button {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 13px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-panel-raised);
+  color: var(--text-primary);
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.ops-shell button:hover:not(:disabled) { border-color: var(--accent-amber); color: var(--accent-amber); }
+.ops-shell button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.ops-shell .btn-primary {
+  background: var(--accent-amber);
+  border-color: var(--accent-amber);
+  color: #1a1305;
+  font-weight: 600;
+}
+.ops-shell .btn-primary:hover:not(:disabled) { background: #ffc233; color: #1a1305; }
+
+.ops-shell table { border-collapse: collapse; width: 100%; }
+.ops-shell th {
+  color: var(--text-secondary); font-size: 12px; text-transform: uppercase;
+  letter-spacing: 0.05em; text-align: left; padding: 10px 8px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.ops-shell td { padding: 10px 8px; border-bottom: 1px solid var(--border-subtle); font-size: 13px; }
+
+.ops-shell .panel { background: var(--bg-panel); border: 1px solid var(--border-subtle); border-radius: var(--radius); }
+.ops-shell .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 8px; }
+.ops-shell .mono { font-family: var(--font-mono); }
+
+.ops-shell .pulse-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--threat-low);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
+  70%  { box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-void); }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+
+.leaflet-container { background: #0d1420; font-family: var(--font-ui); }
+.leaflet-control-zoom a {
+  background: var(--bg-panel-raised) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-strong) !important;
+}
+.leaflet-control-zoom a:hover { color: var(--accent-amber) !important; }
+.leaflet-popup-content-wrapper {
+  background: var(--bg-panel-raised);
+  color: var(--text-primary);
+  border-radius: var(--radius);
+  font-family: var(--font-ui);
+  font-size: 13px;
+}
+.leaflet-popup-tip { background: var(--bg-panel-raised); }
+.leaflet-bar a { border-color: var(--border-strong) !important; }
+.leaflet-draw-toolbar a { background-color: var(--bg-panel-raised) !important; }
