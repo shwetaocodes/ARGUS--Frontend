@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import client from "../api/client";
+const SOURCE_LABELS = { event: "Ingested", incident: "Incident", sitrep: "Sitrep" };
+const SOURCE_COLORS = { event: "var(--ld-violet)", incident: "var(--ld-magenta)", sitrep: "var(--ld-green)" };
 
 export default function EntityProfile() {
   const { id } = useParams();
@@ -41,9 +43,12 @@ export default function EntityProfile() {
         {timeline.length === 0 ? (
           <div style={{ fontSize: 13, color: "var(--ld-text-tertiary)" }}>No events yet.</div>
         ) : timeline.map((t) => (
-          <div key={t.event_id} className="ld-list-row">
-            <span style={{ color: "var(--ld-text-tertiary)", minWidth: 90 }}>{t.published_at?.slice(0, 10) || "—"}</span>
+          <div key={`${t.source_type}-${t.id}`} className="ld-list-row">
+            <span className="ld-dot" style={{ background: SOURCE_COLORS[t.source_type] }} />
+            <span style={{ fontSize: 11, color: "var(--ld-text-tertiary)", minWidth: 60 }}>{SOURCE_LABELS[t.source_type]}</span>
+            <span style={{ color: "var(--ld-text-tertiary)", minWidth: 90 }}>{t.date?.slice(0, 10) || "—"}</span>
             <span>{t.title}</span>
+            {t.reliability_rating && <span style={{ marginLeft: "auto", color: "var(--ld-text-tertiary)" }}>{t.reliability_rating}/5</span>}
           </div>
         ))}
       </div>

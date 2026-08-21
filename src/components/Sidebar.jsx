@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, Users, Map, FileText, AlertTriangle, Activity, LogOut } from "lucide-react";
+import { LayoutDashboard, Users, Map, FileText, AlertTriangle, Activity, ScrollText, LogOut } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
+import { ClipboardCheck } from "lucide-react";
 
 const LINKS = [
   { to: "/dashboard", icon: LayoutDashboard },
@@ -9,6 +10,8 @@ const LINKS = [
   { to: "/sitreps", icon: FileText },
   { to: "/incidents", icon: AlertTriangle },
   { to: "/detections", icon: Activity },
+  { to: "/review", icon: ClipboardCheck },
+  { to: "/audit", icon: ScrollText },
 ];
 
 export default function Sidebar() {
