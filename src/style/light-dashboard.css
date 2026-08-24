@@ -1,3 +1,43 @@
+:root {
+  --bp-mobile: 640px;
+  --bp-tablet: 900px;
+}
+
+.ld-sidebar-desktop { display: flex; }
+.ld-bottom-nav { display: none; }
+
+@media (max-width: 640px) {
+  .ld-sidebar-desktop { display: none; }
+
+  .ld-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 60px;
+    background: var(--ld-bg-card);
+    border-top: 1px solid var(--ld-border);
+    z-index: 100;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  .ld-bottom-nav-item {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2px;
+    color: var(--ld-text-tertiary);
+    text-decoration: none;
+    font-size: 10px;
+  }
+  .ld-bottom-nav-item.active { color: var(--ld-violet); }
+
+  .ld-main {
+    padding: 16px !important;
+    padding-bottom: 76px !important;
+  }
+
+  button, .ld-nav-icon, input[type="checkbox"] { min-height: 40px; }
+  input[type="checkbox"] { min-width: 20px; min-height: 20px; }
+}
+
 .ld-shell {
   --ld-bg-app: #f5f6fa;
   --ld-bg-card: #ffffff;
@@ -56,6 +96,24 @@
 .ld-nav-icon.active { background: #efecff; color: var(--ld-violet); }
 
 .ld-main { flex: 1; padding: 28px 32px; overflow-y: auto; }
+
+.ld-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.ld-content-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 640px) {
+  .ld-metrics-grid { grid-template-columns: 1fr; gap: 12px; }
+  .ld-content-grid { grid-template-columns: 1fr; }
+}
 
 .ld-card {
   background: var(--ld-bg-card);
@@ -155,3 +213,25 @@
 }
 .ld-shell a { color: var(--ld-violet); text-decoration: none; }
 .ld-shell a:hover { text-decoration: underline; }
+
+@media (max-width: 640px) {
+  .ld-card table { display: block; }
+  .ld-card thead { display: none; }
+  .ld-card tbody, .ld-card tr { display: block; }
+  .ld-card tr {
+    border-bottom: 1px solid var(--ld-border);
+    padding: 10px 0;
+  }
+  .ld-card td {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 16px;
+    border-bottom: none;
+  }
+  .ld-card td::before {
+    content: attr(data-label);
+    font-weight: 500;
+    color: var(--ld-text-secondary);
+    font-size: 11px;
+  }
+}

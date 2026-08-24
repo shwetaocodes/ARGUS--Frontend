@@ -91,7 +91,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 18, marginBottom: 24 }}>
+      <div className="ld-metrics-grid">
         <MetricCard
           label="Entities Tracked" value={entities.length}
           sub={`${assessedPct}% threat-assessed`} progress={assessedPct}
@@ -110,7 +110,7 @@ export default function Dashboard() {
       </div>
 
       
-      <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr", gap: 18 }}>
+      <div className="ld-content-grid">
         <div className="ld-card">
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
             <div style={{ fontWeight: 600, fontSize: 15 }}>Ingestion Activity</div>

@@ -27,7 +27,7 @@ export default function EntityList() {
         placeholder="Search by name"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        style={{ width: 320, marginBottom: 20 }}
+        style={{ width: "100%", maxWidth: 320, marginBottom: 20 }}
       />
 
       <div className="ld-card" style={{ padding: 0 }}>
@@ -45,9 +45,9 @@ export default function EntityList() {
             ) : (
               entities.map((e) => (
                 <tr key={e.id}>
-                  <td style={{ padding: "12px 16px" }}><Link to={`/entities/${e.id}`}>{e.name}</Link></td>
-                  <td>{e.type}</td>
-                  <td>{e.threat_level || "—"}</td>
+                  <td data-label="Name" style={{ padding: "12px 16px" }}><Link to={`/entities/${e.id}`}>{e.name}</Link></td>
+                  <td data-label="Type">{e.type}</td>
+                  <td data-label="Threat">{e.threat_level || "—"}</td>
                 </tr>
               ))
             )}

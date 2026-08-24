@@ -68,12 +68,12 @@ export default function MapView() {
   const [sectors, setSectors] = useState([]);
   const [showSectors, setShowSectors] = useState(true);
   const [polygonResult, setPolygonResult] = useState(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
-  // time-lapse state
   const [timelapseEvents, setTimelapseEvents] = useState([]);
   const [timelapseIndex, setTimelapseIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
-  const [mode, setMode] = useState("live"); // "live" | "timelapse"
+  const [mode, setMode] = useState("live"); 
 
   const featureGroupRef = useRef(null);
 
@@ -140,40 +140,45 @@ export default function MapView() {
   return (
     <div className="ops-shell" style={{ display: "flex", height: "calc(100vh - 60px)" }}>
       {/* --- Controls sidebar --- */}
-      <div style={{ width: 260, padding: "1rem", borderRight: "1px solid #ccc", overflowY: "auto" }}>
-        <h3>Filters</h3>
-        <label>Start date<br /><input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} /></label><br /><br />
-        <label>End date<br /><input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} /></label><br /><br />
+      <div className={`ops-map-sidebar panel ${drawerOpen ? "expanded" : ""}`} style={{ padding: 0, borderRight: "1px solid #ccc", overflowY: "auto" }}>
+        <div className="ops-map-toggle" onClick={() => setDrawerOpen(!drawerOpen)}>
+          {drawerOpen ? "Hide filters ▾" : "Filters & sectors ▴"}
+        </div>
+        <div style={{ padding: 16 }}>
+          <h3>Filters</h3>
+          <label>Start date<br /><input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} /></label><br /><br />
+          <label>End date<br /><input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} /></label><br /><br />
 
-        <label><input type="checkbox" checked={showClusters} onChange={(e) => setShowClusters(e.target.checked)} /> Cluster pins</label><br />
-        <label><input type="checkbox" checked={showHeatmap} onChange={(e) => setShowHeatmap(e.target.checked)} /> Heatmap overlay</label><br />
-        <label><input type="checkbox" checked={showSectors} onChange={(e) => setShowSectors(e.target.checked)} /> Show sectors</label><br /><br />
+          <label><input type="checkbox" checked={showClusters} onChange={(e) => setShowClusters(e.target.checked)} /> Cluster pins</label><br />
+          <label><input type="checkbox" checked={showHeatmap} onChange={(e) => setShowHeatmap(e.target.checked)} /> Heatmap overlay</label><br />
+          <label><input type="checkbox" checked={showSectors} onChange={(e) => setShowSectors(e.target.checked)} /> Show sectors</label><br /><br />
 
-        <h3>Time-lapse</h3>
-        <button onClick={startTimelapse}>Load range</button>{" "}
-        <button onClick={() => setPlaying((p) => !p)} disabled={mode !== "timelapse"}>{playing ? "Pause" : "Play"}</button><br />
-        {mode === "timelapse" && (
-          <>
-            <input type="range" min={0} max={timelapseEvents.length} value={timelapseIndex}
-              onChange={(e) => setTimelapseIndex(parseInt(e.target.value))} style={{ width: "100%" }} />
-            <p>{timelapseIndex} / {timelapseEvents.length} events</p>
-            <button onClick={() => { setMode("live"); setPlaying(false); }}>Back to live view</button>
-          </>
-        )}
+          <h3>Time-lapse</h3>
+          <button onClick={startTimelapse}>Load range</button>{" "}
+          <button onClick={() => setPlaying((p) => !p)} disabled={mode !== "timelapse"}>{playing ? "Pause" : "Play"}</button><br />
+          {mode === "timelapse" && (
+            <>
+              <input type="range" min={0} max={timelapseEvents.length} value={timelapseIndex}
+                onChange={(e) => setTimelapseIndex(parseInt(e.target.value))} style={{ width: "100%" }} />
+              <p>{timelapseIndex} / {timelapseEvents.length} events</p>
+              <button onClick={() => { setMode("live"); setPlaying(false); }}>Back to live view</button>
+            </>
+          )}
 
-        {polygonResult && (
-          <>
-            <h3>Polygon selection</h3>
-            <p>{polygonResult.events.length} events in area</p>
-            <button onClick={saveSector}>Save as sector</button>{" "}
-            <button onClick={() => setPolygonResult(null)}>Clear</button>
-          </>
-        )}
+          {polygonResult && (
+            <>
+              <h3>Polygon selection</h3>
+              <p>{polygonResult.events.length} events in area</p>
+              <button onClick={saveSector}>Save as sector</button>{" "}
+              <button onClick={() => setPolygonResult(null)}>Clear</button>
+            </>
+          )}
 
-        <h3>Sectors</h3>
-        <ul style={{ paddingLeft: 16 }}>
-          {sectors.map((s) => <li key={s.id}>{s.name}</li>)}
-        </ul>
+          <h3>Sectors</h3>
+          <ul style={{ paddingLeft: 16 }}>
+            {sectors.map((s) => <li key={s.id}>{s.name}</li>)}
+          </ul>
+        </div>
       </div>
 
       {/* --- Map --- */}

@@ -68,7 +68,7 @@ export default function EntityProfile() {
       <div className="ld-card">
         <div style={{ fontWeight: 500, marginBottom: 10 }}>Annotations</div>
         <form onSubmit={addAnnotation} style={{ display: "flex", gap: 8, marginBottom: 12 }}>
-          <input value={note} onChange={(e) => setNote(e.target.value)} placeholder="Add a note..." style={{ flex: 1 }} />
+          <input value={note} onChange={(e) => setNote(e.target.value)} placeholder="Add a note..." style={{ flex: 1, width: "100%", maxWidth: 320 }} />
           <button type="submit" className="btn-primary">Add</button>
         </form>
         {annotations.length === 0 ? (

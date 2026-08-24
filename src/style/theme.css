@@ -124,3 +124,35 @@ body { font-family: var(--font-ui); font-size: 14px; -webkit-font-smoothing: ant
 .leaflet-popup-tip { background: var(--bg-panel-raised); }
 .leaflet-bar a { border-color: var(--border-strong) !important; }
 .leaflet-draw-toolbar a { background-color: var(--bg-panel-raised) !important; }
+
+.ops-map-sidebar { width: 300px; flex-shrink: 0; }
+.ops-map-toggle { display: none; }
+
+@media (max-width: 640px) {
+  .ops-map-sidebar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    width: auto;
+    max-height: 60vh;
+    overflow-y: auto;
+    border-radius: 16px 16px 0 0;
+    border-top: 1px solid var(--border-strong);
+    transform: translateY(calc(100% - 52px));
+    transition: transform 0.25s ease;
+    z-index: 500;
+  }
+  .ops-map-sidebar.expanded { transform: translateY(0); }
+
+  .ops-map-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  button, .ld-nav-icon, input[type="checkbox"] { min-height: 40px; }
+  input[type="checkbox"] { min-width: 20px; min-height: 20px; }
+}

@@ -28,15 +28,15 @@ export default function Incidents() {
 
       <div className="ld-card" style={{ marginBottom: 16 }}>
         <form onSubmit={submit} style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-          <input type="datetime-local" required value={form.incident_date} onChange={(e) => setForm({ ...form, incident_date: e.target.value })} />
-          <input placeholder="Location" required value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} />
+          <input type="datetime-local" required value={form.incident_date} onChange={(e) => setForm({ ...form, incident_date: e.target.value })} style={{ width: "100%", maxWidth: 700 }} />
+          <input placeholder="Location" required value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} style={{ width: "100%", maxWidth: 700 }} />
           <select value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })}>
             {TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
           </select>
-          <textarea placeholder="Description" required rows={3} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
+          <textarea placeholder="Description" required rows={3} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} style={{ width: "100%", maxWidth: 700 }} />
           <label style={{ fontSize: 13, color: "var(--ld-text-secondary)" }}>
             Reliability (1–5)
-            <input type="number" min={1} max={5} value={form.reliability_rating} onChange={(e) => setForm({ ...form, reliability_rating: parseInt(e.target.value) })} style={{ marginLeft: 8, width: 60 }} />
+            <input type="number" min={1} max={5} value={form.reliability_rating} onChange={(e) => setForm({ ...form, reliability_rating: parseInt(e.target.value) })} style={{ marginLeft: 8, width: "100%", maxWidth: 60 }} />
           </label>
           <button type="submit" className="btn-primary" style={{ alignSelf: "flex-start" }}>Log incident</button>
         </form>

@@ -19,12 +19,12 @@ export default function AuditLog() {
           <tbody>
             {logs.map((l) => (
               <tr key={l.id}>
-                <td style={{ padding: "10px 16px", fontSize: 12 }}>{l.created_at?.slice(0, 19).replace("T", " ")}</td>
-                <td style={{ fontSize: 12 }}>{l.analyst}</td>
-                <td style={{ fontSize: 12 }}>{l.method}</td>
-                <td style={{ fontSize: 12 }}>{l.path}</td>
-                <td style={{ fontSize: 12, color: l.status_code >= 400 ? "var(--fill-danger, #d9534f)" : "inherit" }}>{l.status_code}</td>
-                <td style={{ fontSize: 12 }}>{l.duration_ms}</td>
+                <td data-label="Time" style={{ padding: "10px 16px", fontSize: 12 }}>{l.created_at?.slice(0, 19).replace("T", " ")}</td>
+                <td data-label="Analyst" style={{ fontSize: 12 }}>{l.analyst}</td>
+                <td data-label="Method" style={{ fontSize: 12 }}>{l.method}</td>
+                <td data-label="Path" style={{ fontSize: 12 }}>{l.path}</td>
+                <td data-label="Status" style={{ fontSize: 12, color: l.status_code >= 400 ? "var(--fill-danger, #d9534f)" : "inherit" }}>{l.status_code}</td>
+                <td data-label="ms" style={{ fontSize: 12 }}>{l.duration_ms}</td>
               </tr>
             ))}
           </tbody>

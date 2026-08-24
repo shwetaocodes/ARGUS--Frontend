@@ -24,7 +24,7 @@ export default function Sitreps() {
 
       <div className="ld-card" style={{ marginBottom: 16 }}>
         <form onSubmit={submit} style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-          <textarea value={content} onChange={(e) => setContent(e.target.value)} rows={3} placeholder="Log a sitrep..." />
+          <textarea value={content} onChange={(e) => setContent(e.target.value)} rows={3} placeholder="Log a sitrep..." style={{ width: "100%", maxWidth: 700 }} />
           <button type="submit" className="btn-primary" style={{ alignSelf: "flex-start" }}>Submit</button>
         </form>
       </div>
